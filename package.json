@@ -12,8 +12,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@tryghost/content-api": "^1.3.6",
     "nuxt": "^2.0.0",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "vue-filter-date-format": "^1.3.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
