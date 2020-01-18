@@ -1,7 +1,6 @@
 <template>
   <div class="container mx-auto">
     <h1 class="text-2xl font-bold py-2">Blog posts</h1>
-
     <PostList
       v-if="indexPosts && indexPagination"
       :posts="indexPosts"
@@ -37,8 +36,8 @@ export default {
 			limit: postsPerPage,
 			page: pageginationPageNumber,
 			include: 'tags,authors',
-			fields: postIndexFields,
-			filter: 'featured: true'
+			fields: postIndexFields
+			// filter: 'featured: true'
 		})
 
 		return {
