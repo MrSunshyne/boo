@@ -34,8 +34,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
-    '~/modules/crawler/'
+    '@nuxtjs/tailwindcss'
+    // '~/modules/crawler/'
   ],
   /*
    ** Nuxt.js modules
@@ -44,15 +44,6 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
-  generate: {
-    dir: 'docs'
-  },
-  router: {
-    base: '/boo/'
-  },
-  /*
-   ** Build configuration
-   */
   build: {
     /*
      ** You can extend webpack config here
@@ -72,7 +63,6 @@ export default {
         autoprefixer: {}
       }
     },
-
     extend(config, ctx) {
       for (let rule of config.module.rules) {
         if (rule.test.test('.css')) {
@@ -84,6 +74,22 @@ export default {
       }
 
       return config
+    }
+  },
+  generate: {
+    dir: 'docs'
+  },
+
+  router: {
+    base: '/boo/'
+  },
+  hooks: {
+    generate: {
+      routeCreated({ route, path, errors }) {
+        console.log(route)
+        console.log(path)
+        console.log(errors)
+      }
     }
   }
 }

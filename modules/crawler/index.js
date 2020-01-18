@@ -20,6 +20,8 @@ module.exports = async function() {
       routes[context.url] = true
       context.links = context.links || []
 
+      console.log(context.links)
+
       const promises = context.links.map(async link => {
         const route = link
           .replace(/\/+/, '/')
