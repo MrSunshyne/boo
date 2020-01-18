@@ -1,29 +1,10 @@
 <template>
-	<div class="container">
-		<div>
-			<h1 class="title">
-				boo
-			</h1>
-			<h2 class="subtitle">
-				A starter theme for headless Ghost CMS
-			</h2>
-			<div class="links mb-10">
-				<a
-					href="https://github.com/nuxt/nuxt.js"
-					target="_blank"
-					class="button--grey"
-				>
-					GitHub
-				</a>
-			</div>
-
-			<PostList
-				v-if="indexPosts && indexPagination"
-				:posts="indexPosts"
-				:pagination="indexPagination"
-			/>
-		</div>
-	</div>
+  <div class="container">
+    <div>
+      <h1 class="title">boo</h1>
+      <h2 class="subtitle">A starter theme for headless Ghost CMS</h2>
+    </div>
+  </div>
 </template>
 <script>
 import { ghost, postsPerPage, postIndexFields } from '../api/ghost'
@@ -64,18 +45,8 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.container {
-	margin: 0 auto;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
 
 .title {
-	font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-		'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	display: block;
 	font-weight: 300;
 	font-size: 100px;

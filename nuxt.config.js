@@ -50,6 +50,33 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+
+    postcss: {
+      plugins: {
+        // Disable a plugin by passing false as value
+        'postcss-color-function': {},
+        'postcss-url': false,
+        tailwindcss: 'tailwind.config.js',
+        'postcss-nested': {},
+        'postcss-hexrgba': {}
+      },
+      preset: {
+        // Change the postcss-preset-env settings
+        autoprefixer: {}
+      }
+    },
+
+    extend(config, ctx) {
+      for (let rule of config.module.rules) {
+        if (rule.test.test('.css')) {
+          config.module.rules.push({
+            test: /\.postcss/,
+            oneOf: rule.oneOf
+          })
+        }
+      }
+
+      return config
+    }
   }
 }
