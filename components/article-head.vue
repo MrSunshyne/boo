@@ -1,5 +1,5 @@
 <template>
-  <header class="post-full-header">
+  <header class="post-full-header" v-if="post">
     <!-- <section v-if="post.primary_tag" class="post-full-tags">
       <nuxt-link
         :to="'/tag/' + post.primary_tag.slug"

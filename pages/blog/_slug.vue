@@ -9,7 +9,7 @@
         <div ref="postContent" class="post-content" v-html="post.html" />
       </section>
 
-      <div class="py-1 md:py-10 mb-16 border border-black">
+      <!-- <div class="py-1 md:py-10 mb-16 border border-black">
         <section class="post-content">
           <section v-if="post.tags" class="post-full-tags">
             <span class="p-2 md:p-3">Tags</span>
@@ -21,14 +21,14 @@
             >{{ tag.name }}</nuxt-link>
           </section>
         </section>
-      </div>
+      </div>-->
     </article>
   </div>
 </template>
 
 <script>
 import { ghost } from '../../api/ghost'
-import ArticleHead from './article-head'
+import ArticleHead from '../../components/article-head'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

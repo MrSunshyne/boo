@@ -34,7 +34,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '~/modules/crawler/'
   ],
   /*
    ** Nuxt.js modules
@@ -43,6 +44,9 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  generate: {
+    dir: 'docs'
+  },
   /*
    ** Build configuration
    */
