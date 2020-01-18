@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style>
+:root {
+	color-scheme: light dark;
+}
+
 .container {
 	@apply px-4;
 }

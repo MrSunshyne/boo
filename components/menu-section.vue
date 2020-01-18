@@ -3,7 +3,7 @@
   <div
     class="main-menu container mx-auto font-bold md:flex justify-center md:justify-between items-center py-3 md:py-10"
   >
-    <nuxt-link class="hidden text-center md:inline text-3xl" :to="'/'">Site Name</nuxt-link>
+    <nuxt-link class="hidden text-center md:inline text-3xl" :to="'/'">boo</nuxt-link>
 
     <ul class="flex mr-3">
       <li>

@@ -1,14 +1,15 @@
 <template>
-  <div class="container mx-auto text-sm uppercase tracking-wide footer-wrapper">
+  <div class="container mx-auto text-sm tracking-wide footer-wrapper">
     <div class="logo">boo</div>
-    <ul class="menu">
+    <div class="text-right">by Sandeep Ramgolam</div>
+    <!-- <ul class="menu">
       <li>
         <nuxt-link :to="{path: '/'}">Home</nuxt-link>
       </li>
       <li>
         <nuxt-link :to="{path: '/blog'}">Blogs</nuxt-link>
       </li>
-    </ul>
+    </ul>-->
   </div>
 </template>
 

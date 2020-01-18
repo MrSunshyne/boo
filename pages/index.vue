@@ -1,8 +1,16 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">boo</h1>
-      <h2 class="subtitle">A starter theme for headless Ghost CMS</h2>
+  <div class="container mx-auto items-center flex">
+    <div class="md:flex">
+      <div class="flex flex-col justify-center w-3/4 md:w-3/4 text-right">
+        <!-- <h1 class="text-4xl">What's boo?</h1> -->
+        <h2
+          class="text-4xl font-serif"
+        >A free and open source starter theme for headless Ghost CMS based on NuxtJS</h2>
+        <nuxt-link :to="{path: '/blog'}" class="button--green">View Blog</nuxt-link>
+      </div>
+      <div class="w-3/4 md:w-1/2">
+        <img class="w-64 mx-auto" src="~/assets/images/boo.svg" alt />
+      </div>
     </div>
   </div>
 </template>
@@ -53,15 +61,6 @@ export default {
 	color: #35495e;
 	letter-spacing: 1px;
 }
-
-.subtitle {
-	font-weight: 300;
-	font-size: 42px;
-	color: #526488;
-	word-spacing: 5px;
-	padding-bottom: 15px;
-}
-
 .links {
 	padding-top: 15px;
 }

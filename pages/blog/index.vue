@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="page-title">Articles</h1>
+  <div class="container mx-auto">
+    <h1 class="text-2xl font-bold py-2">Blog posts</h1>
 
     <PostList
       v-if="indexPosts && indexPagination"

@@ -1,26 +1,26 @@
 
 <template>
-	<div>
-		<div class="blog-posts">
-			<blog-card
-				v-for="(post, index) in posts"
-				:key="post.id"
-				class="blog-box"
-				:post="post"
-				:style="'--delay:' + index + 's'"
-			></blog-card>
-		</div>
+  <div>
+    <div class="blog-posts">
+      <blog-card
+        v-for="(post, index) in posts"
+        :key="post.id"
+        class="blog-box"
+        :post="post"
+        :style="'--delay:' + index + 's'"
+      ></blog-card>
+    </div>
 
-		<div class="flex justify-center py-10" role="navigation">
-			<p v-if="pagination.prev">
-				<nuxt-link :to="prevLink">Prev</nuxt-link>
-			</p>
-			<p>Page {{ pagination.page }} of {{ pagination.pages }}</p>
-			<p v-if="pagination.next">
-				<nuxt-link :to="nextLink">Next</nuxt-link>
-			</p>
-		</div>
-	</div>
+    <div class="flex justify-center py-10" role="navigation">
+      <p v-if="pagination.prev">
+        <nuxt-link :to="prevLink">Prev</nuxt-link>
+      </p>
+      <p>Page {{ pagination.page }} of {{ pagination.pages }}</p>
+      <p v-if="pagination.next">
+        <nuxt-link :to="nextLink">Next</nuxt-link>
+      </p>
+    </div>
+  </div>
 </template> 
 
 <script>
@@ -63,11 +63,17 @@ export default {
 <style scoped>
 .blog-posts {
 	display: grid;
+	/* grid-auto-columns: 290px; */
 	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 	grid-gap: 30px;
 	/* max-width: 80%; */
 	margin: 0 auto;
 	/* justify-content: center; */
+	.blog-box:nth-child(1) {
+		grid-column: 1 / 3;
+		grid-row: 1 / 2;
+	}
+
 	.blog-box {
 		opacity: 0;
 		transform: translateY(10px);

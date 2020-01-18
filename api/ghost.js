@@ -4,8 +4,14 @@ import GhostContentAPI from '@tryghost/content-api'
 const ghost = new GhostContentAPI({
   url: 'https://demo.ghost.io',
   key: '22444f78447824223cefc48062',
-  version: 'v2'
+  version: 'v3'
 })
+
+// // Create API instance with site credentials
+// const ghost = new GhostContentAPI({
+//   url: 'http://localhost:2368',
+//   version: 'v3'
+// })
 
 export async function getPosts() {
   return await ghost.posts
