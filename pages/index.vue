@@ -4,9 +4,12 @@
       <div class="flex flex-col justify-center w-3/4 md:w-3/4 text-right">
         <!-- <h1 class="text-4xl">What's boo?</h1> -->
         <h2
-          class="text-4xl font-serif"
-        >A free and open source starter theme for headless Ghost CMS based on NuxtJS</h2>
-        <nuxt-link :to="{path: '/blog'}" class="button--green">View Blog</nuxt-link>
+          class="text-5xl tracking-tight font-serif text-gray-700"
+        >A free and open source starter theme for headless Ghost CMS</h2>
+        <p class="text-2xl text-gray-500 mt-5">Built with NuxtJS & TailwindCSS</p>
+        <div class="mt-5">
+          <nuxt-link :to="{path: '/blog'}" class="button">View posts</nuxt-link>
+        </div>
       </div>
       <div class="w-3/4 md:w-1/2">
         <img class="w-64 mx-auto" src="~/assets/images/boo.svg" alt />
@@ -63,5 +66,9 @@ export default {
 }
 .links {
 	padding-top: 15px;
+}
+
+.button {
+	@apply shadow px-5 py-2 inline-block;
 }
 </style>
