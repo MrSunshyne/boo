@@ -7,9 +7,10 @@ const ghost = new GhostContentAPI({
   version: 'v3'
 })
 
-// // Create API instance with site credentials
+// Create API instance with site credentials
 // const ghost = new GhostContentAPI({
 //   url: 'http://localhost:2368',
+//   key: '7ff1ec3bfc810c96c7e9e10ace',
 //   version: 'v3'
 // })
 
@@ -33,7 +34,7 @@ export async function getSinglePost(postSlug) {
     })
 }
 
-const postsPerPage = 15
+const postsPerPage = 7
 
 const postIndexFields = [
   'id',
