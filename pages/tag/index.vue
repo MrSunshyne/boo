@@ -1,69 +1,58 @@
 <template>
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold py-2 text-center md:text-left">Blog posts</h1>
-    <PostList
-      v-if="indexPosts && indexPagination"
-      :posts="indexPosts"
-      :pagination="indexPagination"
-    />
+    <h1 class="text-2xl font-bold py-2 text-center md:text-left">All tags</h1>
+
+    <div class="tags-wrapper" v-if="tags">
+      <nuxt-link :to="'/tag/' + tag.slug" class="tags" v-for="tag in tags">{{ tag.name }}</nuxt-link>
+    </div>
+    <div v-else>Loading tags</div>
   </div>
 </template>
 
-<script>
-import { ghost, postsPerPage, postIndexFields } from '../../api/ghost'
+<style scoped>
+.tags-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 30px;
+}
 
-import PostList from '../../components/PostList'
+.tags {
+	@apply shadow p-8 text-center;
+}
+</style>
+
+<script>
+import { ghost } from '../../api/ghost'
+
 export default {
-	name: 'PostIndex',
-	components: {
-		PostList
-	},
-	data() {
-		return {
-			// generateRoutes: generateRoutes()
-		}
-	},
+	name: 'Tags',
+	components: {},
 	computed: {},
 	async asyncData({ params, store, error, payload }) {
-		let pageginationPageNumber = 1
-		if (params.pageNumber) {
-			pageginationPageNumber = params.pageNumber
-		}
-
-		let paginationFilter = ''
-
-		const posts = await ghost.posts.browse({
-			limit: postsPerPage,
-			page: pageginationPageNumber,
-			include: 'tags,authors',
-			fields: postIndexFields
-			// filter: 'featured: true'
-		})
-
+		const tags = await ghost.tags.browse()
 		return {
-			indexPosts: posts,
-			indexPagination: posts.meta.pagination
+			tags: tags
 		}
 	},
 	head() {
 		return {
-			title: 'Articles | Sandeep Ramgolam',
+			title: 'Tags',
 			meta: [
 				{
 					hid: 'description',
 					name: 'description',
-					content: 'Blog articles by Sandeep Ramgolam'
+					content: 'Tags'
 				},
 				{ hid: 'og:type', property: 'og:type', content: 'page' },
 				{
 					hid: 'og:title',
 					property: 'og:title',
-					content: 'Articles | Sandeep Ramgolam'
+					content: 'Tags'
 				},
 				{
 					hid: 'og:description',
 					property: 'og:description',
-					content: 'Articles written by Sandeep Ramgolam'
+					content: 'Tags'
 				},
 				{
 					hid: 'og:url',
