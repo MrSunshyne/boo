@@ -1,20 +1,15 @@
 <template>
   <section class="section">
-    <div class="container">
-      <h1
-        class="page-title text-xl md:text-2xl py-10 px-2"
-      >Articles written by {{ currentAuthor.name }}</h1>
+    <div class="container mx-auto" v-if="currentAuthor">
+      <h1 class="text-2xl font-bold py-2 text-center md:text-left">#{{ currentAuthor.name }}</h1>
 
-      <h2
-        v-if="currentAuthor.description"
-        class="subtitle has-text-centered"
-      >{{ currentAuthor.description }}</h2>
+      <p v-if="currentAuthor.description" class="page-subtitle">{{ currentAuthor.description }}</p>
 
       <PostList
         v-if="indexPosts && indexPagination"
         :posts="indexPosts"
         :pagination="indexPagination"
-        :index-base="'/author/' + currentAuthor.slug + '/'"
+        :index-base="'/author/' + $route.params.slug + '/'"
       />
     </div>
   </section>
@@ -23,47 +18,22 @@
 <script>
 import { ghost, postsPerPage, postIndexFields } from '../../api/ghost'
 import PostList from '../../components/PostList'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-	name: 'AuthorIndex',
+	name: 'TagIndex',
 	components: {
 		PostList
 	},
 	computed: {
+		...mapGetters({ ghost: 'getGhost' }),
 		siteSettings() {
 			return this.$store.state.siteSettings
-		},
-		currentAuthor() {
-			return this.$store.state.siteAuthors.find(
-				author => author.slug === this.$route.params.slug
-			)
-		}
-	},
-	async asyncData({ params, store, error, payload }) {
-		let pageginationPageNumber = 1
-		if (params.pageNumber) {
-			pageginationPageNumber = params.pageNumber
-		}
-
-		let paginationFilter = ''
-
-		const posts = await ghost.posts.browse({
-			limit: postsPerPage,
-			page: pageginationPageNumber,
-			include: 'tags,authors',
-			fields: postIndexFields,
-			filter: 'author:' + params.slug,
-			pageNumber: pageginationPageNumber
-		})
-
-		return {
-			indexPosts: posts,
-			indexPagination: posts.meta.pagination
 		}
 	},
 	head() {
 		return {
-			title: `Articles by ${this.currentAuthor.name}`,
+			title: `Articles tagged as ${this.currentAuthor.name}`,
 			meta: [
 				{
 					hid: 'description',
@@ -74,7 +44,7 @@ export default {
 				{
 					hid: 'og:title',
 					property: 'og:title',
-					content: `Articles by ${this.currentAuthor.name}`
+					content: `Articles tagged as ${this.currentAuthor.name}`
 				},
 				{
 					hid: 'og:description',
@@ -89,14 +59,12 @@ export default {
 				{
 					hid: 'og:url',
 					property: 'og:url',
-					content: this.replaceWithAbsolute(
-						process.env.siteUrl + this.$route.path
-					)
+					content: process.env.siteUrl + this.$route.path
 				},
 				{
 					hid: 'twitter:title',
 					name: 'twitter:title',
-					content: `Articles by ${this.currentAuthor.name}`
+					content: `Articles tagged as ${this.currentAuthor.name}`
 				},
 				{
 					hid: 'twitter:description',
@@ -114,6 +82,43 @@ export default {
 					content: process.env.siteUrl + this.$route.path
 				}
 			]
+		}
+	},
+	created() {
+		this.fetchData()
+	},
+	data() {
+		return {
+			currentAuthor: {
+				name: 'loading',
+				description: 'loading'
+			},
+			indexPosts: [],
+			indexPagination: 0
+		}
+	},
+	methods: {
+		async fetchData() {
+			let pageginationPageNumber = 1
+			if (this.$route.params.pageNumber) {
+				pageginationPageNumber = this.$route.params.pageNumber
+			}
+			let paginationFilter = ''
+
+			this.currentAuthor = await this.ghost.authors.read({
+				slug: this.$route.params.slug
+			})
+
+			this.indexPosts = await this.ghost.posts.browse({
+				limit: postsPerPage,
+				page: pageginationPageNumber,
+				include: 'tags,authors',
+				fields: postIndexFields,
+				filter: 'author:' + this.$route.params.slug,
+				pageNumber: pageginationPageNumber
+			})
+
+			this.indexPagination = this.indexPosts.meta.pagination
 		}
 	}
 }

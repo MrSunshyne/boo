@@ -1,42 +1,49 @@
 <template>
-  <div class="container mx-auto text-sm py-5 tracking-wide footer-wrapper">
-    <a
-      href="https://github.com/MrSunshyne/boo"
-      class="md:text-right underline text-xs uppercase tracking-widest"
-    >Star on Github</a>
-    <!-- <ul class="menu">
+  <div class="container flex justify-between mx-auto text-sm py-5 tracking-wide">
+    <nuxt-link :to="{name: 'settings'}" class="md:text-right text-xs tracking-widest">
+      <div class="text-gray-600">source: {{ url }}</div>
+    </nuxt-link>
+
+    <ul class="menu flex justify-end">
       <li>
-        <nuxt-link :to="{path: '/'}">Home</nuxt-link>
+        <a
+          href="https://github.com/MrSunshyne/boo"
+          class="md:text-right underline text-xs uppercase tracking-widest pr-3"
+        >Star on Github</a>
       </li>
-      <li>
-        <nuxt-link :to="{path: '/blog'}">Blogs</nuxt-link>
-      </li>
-    </ul>-->
+    </ul>
   </div>
 </template>
 
+<script>
+export default {
+	computed: {
+		url: {
+			get() {
+				return this.$store.state.ghostUrl
+			}
+		}
+	}
+}
+</script>
+
 <style scoped>
 .footer-wrapper {
-	@apply text-center;
+	/* @apply text-center; */
 	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 1fr;
+	/* grid-auto-columns: auto; */
+	/* grid-template-rows: 1fr 1fr; */
 }
 
 @sm {
 	.footer-wrapper {
-		grid-template-columns: 100px 1fr;
-		grid-template-rows: 1fr;
-		grid-gap: 100px;
+		/* grid-template-columns: 100px 1fr; */
+		/* grid-template-rows: 1fr; */
+		/* grid-gap: 100px; */
 		padding: 20px 0;
 	}
 }
 
 .logo {
-}
-.menu {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	grid-gap: 20px;
 }
 </style>

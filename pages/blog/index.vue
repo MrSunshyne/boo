@@ -1,6 +1,7 @@
 <template>
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold py-2 text-center md:text-left">Blog posts</h1>
+    <h1 class="text-2xl font-bold py-2 text-center md:text-left">posts</h1>
+
     <PostList
       v-if="indexPosts && indexPagination"
       :posts="indexPosts"
@@ -10,39 +11,43 @@
 </template>
 
 <script>
-import { ghost, postsPerPage, postIndexFields } from '../../api/ghost'
+import { mapGetters, mapActions } from 'vuex'
 
 import PostList from '../../components/PostList'
+
 export default {
 	name: 'PostIndex',
 	components: {
 		PostList
 	},
+	computed: {
+		...mapGetters({ ghost: 'getGhost' })
+	},
+	created() {
+		this.fetchData()
+	},
 	data() {
 		return {
-			// generateRoutes: generateRoutes()
+			indexPosts: [],
+			indexPagination: 0
 		}
 	},
-	computed: {},
-	async asyncData({ params, store, error, payload }) {
-		let pageginationPageNumber = 1
-		if (params.pageNumber) {
-			pageginationPageNumber = params.pageNumber
-		}
+	methods: {
+		async fetchData() {
+			let pageginationPageNumber = 1
+			if (this.$route.params.pageNumber) {
+				pageginationPageNumber = this.$route.params.pageNumber
+			}
+			let paginationFilter = ''
+			this.indexPosts = await this.ghost.posts.browse({
+				limit: this.$store.state.ghostPostsPerPage,
+				page: pageginationPageNumber,
+				include: 'tags,authors',
+				fields: this.$store.state.ghostPostIndexFields
+				// filter: 'featured: true'
+			})
 
-		let paginationFilter = ''
-
-		const posts = await ghost.posts.browse({
-			limit: postsPerPage,
-			page: pageginationPageNumber,
-			include: 'tags,authors',
-			fields: postIndexFields
-			// filter: 'featured: true'
-		})
-
-		return {
-			indexPosts: posts,
-			indexPagination: posts.meta.pagination
+			this.indexPagination = this.indexPosts.meta.pagination
 		}
 	},
 	head() {
@@ -71,6 +76,11 @@ export default {
 					content: process.env.siteUrl + this.$route.path
 				}
 			]
+		}
+	},
+	watch: {
+		ghost(n, o) {
+			this.fetchData()
 		}
 	}
 }

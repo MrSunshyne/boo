@@ -1,4 +1,6 @@
+import GhostContentAPI from '@tryghost/content-api'
 import { ghost, postsPerPage, postIndexFields } from '../api/ghost'
+
 import utils from '../assets/mixins/utils'
 import Vue from 'vue'
 
@@ -10,7 +12,23 @@ export const state = () => ({
   currentPost: null,
   siteSettings: null,
   siteTags: null,
-  siteAuthors: null
+  siteAuthors: null,
+  ghost: null,
+  ghostUrl: 'https://demo.ghost.io',
+  ghostKey: '22444f78447824223cefc48062',
+  ghostVersion: 'v3',
+  ghostPostPerPage: [
+    'id',
+    'uuid',
+    'title',
+    'slug',
+    'feature_image',
+    'featured',
+    'published_at',
+    'custom_excerpt',
+    'excerpt' // excerpt doesn't seem to work in field definition (bug?)
+  ],
+  ghostPostsPerPage: 7
 })
 
 export const mutations = {
@@ -36,16 +54,52 @@ export const mutations = {
   },
   setSiteAuthors(state, siteAuthors) {
     state.siteAuthors = siteAuthors
+  },
+  setGhost(state, instance) {
+    state.ghost = instance
+  },
+  setGhostUrl(state, value) {
+    state.ghostUrl = value
+  },
+  setGhostKey(state, value) {
+    state.ghostKey = value
   }
 }
 
 export const getters = {
   getDarkMode(state) {
     return state.dark
+  },
+  getGhost(state) {
+    return state.ghost
+  },
+  getGhostOptions(state) {
+    return {
+      url: state.ghostUrl,
+      key: state.ghostKey,
+      version: state.ghostVersion
+    }
   }
 }
 
 export const actions = {
+  initGhost({ state, commit }) {
+    const instance = new GhostContentAPI({
+      url: state.ghostUrl,
+      key: state.ghostKey,
+      version: state.ghostVersion
+    })
+    // console.log(instance)
+    commit('setGhost', instance)
+  },
+  resetGhost({ state, commit }) {
+    const instance = new GhostContentAPI({
+      url: 'https://demo.ghost.io',
+      key: '22444f78447824223cefc48062',
+      version: 'v3'
+    })
+    commit('setGhost', instance)
+  },
   setDarkMode({ commit }, payload) {
     const darkModeClass = 'mode-dark'
 
@@ -85,9 +139,10 @@ export const actions = {
       }
     }
   },
-  async nuxtServerInit({ commit }, { error }) {
+  async nuxtServerInit({ state, commit, dispatch }, { error }) {
     // get site settings, and whether or not posts have a previous or next post
     // use this for both static and universal apps
+
     try {
       const settings = await ghost.settings.browse()
       const tags = await ghost.tags.browse({ limit: 'all' })

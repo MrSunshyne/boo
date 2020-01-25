@@ -116,26 +116,8 @@ export default {
 				fields: 'slug,title'
 			})
 
-			// append next and previous slugs (for links in a post) to next and previous posts
-			// REFACTOR PLEASE. NOT EFFICIENT
-			const relatedPosts = posts
-				.map((post, index) => {
-					const prevPost = posts[index - 1] ? posts[index - 1] : null
-					const nextPost = posts[index + 1] ? posts[index + 1] : null
-
-					return {
-						...post,
-						prevPost,
-						nextPost
-					}
-				})
-				.filter(post => post.slug === params.slug)[0]
-
-			// console.log(relatedPosts)
-
 			return {
-				post,
-				relatedPosts
+				post
 			}
 		} catch (e) {
 			// error({ statusCode: 404, message: e.message })

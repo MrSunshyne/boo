@@ -15,6 +15,9 @@ export default {
 	components: {
 		MenuSection,
 		FooterSection
+	},
+	created() {
+		this.$store.dispatch('initGhost')
 	}
 }
 </script>

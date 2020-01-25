@@ -22,17 +22,27 @@
 </style>
 
 <script>
-import { ghost } from '../../api/ghost'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
 	name: 'Tags',
 	components: {},
-	computed: {},
-	async asyncData({ params, store, error, payload }) {
-		const tags = await ghost.tags.browse()
+	computed: {
+		...mapGetters({ ghost: 'getGhost' })
+	},
+	data() {
 		return {
-			tags: tags
+			tags: null
 		}
+	},
+	methods: {
+		async fetchTags() {
+			const tags = await this.ghost.tags.browse()
+			this.tags = tags
+		}
+	},
+	mounted() {
+		this.fetchTags()
 	},
 	head() {
 		return {

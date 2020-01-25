@@ -18,6 +18,7 @@
 <script>
 import { ghost, postsPerPage, postIndexFields } from '../../api/ghost'
 import PostList from '../../components/PostList'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
 	name: 'TagIndex',
@@ -25,13 +26,9 @@ export default {
 		PostList
 	},
 	computed: {
+		...mapGetters({ ghost: 'getGhost' }),
 		siteSettings() {
 			return this.$store.state.siteSettings
-		},
-		currentTag() {
-			return this.$store.state.siteTags.find(
-				tag => tag.slug === this.$route.params.slug
-			)
 		}
 	},
 	head() {
@@ -87,26 +84,41 @@ export default {
 			]
 		}
 	},
-	async asyncData({ params, store, error, payload }) {
-		let pageginationPageNumber = 1
-		if (params.pageNumber) {
-			pageginationPageNumber = params.pageNumber
-		}
-
-		let paginationFilter = ''
-
-		const posts = await ghost.posts.browse({
-			limit: postsPerPage,
-			page: pageginationPageNumber,
-			include: 'tags,authors',
-			fields: postIndexFields,
-			filter: 'tag:' + params.slug,
-			pageNumber: pageginationPageNumber
-		})
-
+	created() {
+		this.fetchData()
+	},
+	data() {
 		return {
-			indexPosts: posts,
-			indexPagination: posts.meta.pagination
+			currentTag: {
+				name: 'loading',
+				description: 'loading'
+			},
+			indexPosts: [],
+			indexPagination: 0
+		}
+	},
+	methods: {
+		async fetchData() {
+			let pageginationPageNumber = 1
+			if (this.$route.params.pageNumber) {
+				pageginationPageNumber = this.$route.params.pageNumber
+			}
+			let paginationFilter = ''
+
+			this.currentTag = await this.ghost.tags.read({
+				slug: this.$route.params.slug
+			})
+
+			this.indexPosts = await this.ghost.posts.browse({
+				limit: postsPerPage,
+				page: pageginationPageNumber,
+				include: 'tags,authors',
+				fields: postIndexFields,
+				filter: 'tag:' + this.$route.params.slug,
+				pageNumber: pageginationPageNumber
+			})
+
+			this.indexPagination = this.indexPosts.meta.pagination
 		}
 	}
 }
