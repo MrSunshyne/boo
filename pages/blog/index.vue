@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold py-2 text-center md:text-left">posts</h1>
+    <h1 class="text-2xl font-bold py-2 text-center md:text-left mb-3">All posts</h1>
 
     <PostList
       v-if="indexPosts && indexPagination"

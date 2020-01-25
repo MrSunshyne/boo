@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold py-2 text-center md:text-left">All tags</h1>
+    <h1 class="text-2xl font-bold py-2 text-center md:text-left mb-3">All tags</h1>
 
     <div class="tags-wrapper" v-if="tags">
       <nuxt-link :to="'/tag/' + tag.slug" class="tags" v-for="tag in tags">{{ tag.name }}</nuxt-link>

@@ -1,7 +1,9 @@
 <template>
   <section class="section">
     <div class="container mx-auto">
-      <h1 class="text-2xl font-bold py-2 text-center md:text-left">#{{ currentTag.name }}</h1>
+      <h1
+        class="text-2xl font-bold py-2 text-center md:text-left"
+      >Articles tagged as #{{ currentTag.name }}</h1>
 
       <p v-if="currentTag.description" class="page-subtitle">{{ currentTag.description }}</p>
 

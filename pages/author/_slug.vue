@@ -1,7 +1,9 @@
 <template>
   <section class="section">
     <div class="container mx-auto" v-if="currentAuthor">
-      <h1 class="text-2xl font-bold py-2 text-center md:text-left">#{{ currentAuthor.name }}</h1>
+      <h1
+        class="text-2xl font-bold py-2 text-center md:text-left"
+      >Articles written by #{{ currentAuthor.name }}</h1>
 
       <p v-if="currentAuthor.description" class="page-subtitle">{{ currentAuthor.description }}</p>
 

@@ -1,13 +1,19 @@
 <template>
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold py-2 text-center md:text-left">All authors</h1>
+    <h1 class="text-2xl font-bold py-2 text-center md:text-left mb-3">All authors</h1>
 
     <div class="authors-wrapper" v-if="authors">
       <nuxt-link
         :to="'/author/' + author.slug"
-        class="authors"
+        class="authors flex items-center flex-col"
         v-for="author in authors"
-      >{{ author.name }}</nuxt-link>
+        :key="author.id"
+      >
+        <div class="image-container rounded-full overflow-hidden w-32 h-32">
+          <img :src="author.profile_image" />
+        </div>
+        <div class="font-bold pt-3">{{ author.name }}</div>
+      </nuxt-link>
     </div>
     <div v-else>Loading authors</div>
   </div>
