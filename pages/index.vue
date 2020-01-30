@@ -5,7 +5,7 @@
         <!-- <h1 class="text-4xl">What's boo?</h1> -->
         <h2
           class="tracking-tight font-serif text-gray-700 text-3xl md:text-5xl"
-        >A free and open source starter theme for headless Ghost CMS</h2>
+        >A free and open source theme for headless Ghost CMS</h2>
         <p class="text-xl md:text-2xl text-gray-500 mt-5">Built with NuxtJS & TailwindCSS</p>
         <div class="mt-5">
           <nuxt-link :to="{path: '/blog'}" class="button">View posts</nuxt-link>
