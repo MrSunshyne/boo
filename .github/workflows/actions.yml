@@ -1,0 +1,17 @@
+name: CI
+
+on: 
+ push:
+    branches:
+    - master
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: npm install
+    - name: Building for github
+      run: npm run build
