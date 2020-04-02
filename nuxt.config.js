@@ -18,7 +18,7 @@ export default {
   },
   /*
    ** Customize the progress-bar color
-  
+
    */
   loading: { color: '#fff' },
   /*
@@ -78,11 +78,10 @@ export default {
     }
   },
   generate: {
-    dir: 'docs'
+    // dir: 'docs'
   },
-
   router: {
-    base: '/boo/',
+    base: '/',
     extendRoutes(routes, resolve) {
       routes.push({
         name: 'PostIndex',
