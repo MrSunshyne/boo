@@ -2,7 +2,7 @@
 
 > A starter theme for headless Ghost CMS
 
-**[View live demo](https://mrsunshyne.github.io/boo/)**
+**[View live demo](https://boo.ramgolam.com/)**
 
 The demo currently uses data from demo.ghost.org (Thanks for making this available team Ghost ♥️)
 
