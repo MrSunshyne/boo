@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto items-center flex">
     <div class="md:flex">
-      <div class="flex flex-col justify-center md:w-3/4 text-center md:text-right">
+      <div class="flex flex-col justify-center sm:w-3/4 text-center md:text-right">
         <!-- <h1 class="text-4xl">What's boo?</h1> -->
         <h2
           class="tracking-tight font-serif text-gray-700 text-3xl md:text-5xl"
@@ -17,36 +17,10 @@
     </div>
   </div>
 </template>
-<script>
-import { ghost, postsPerPage, postIndexFields } from '../api/ghost'
 
-import PostList from '../components/PostList'
+<script>
 export default {
-	// async asyncData({ params, store, error, payload }) {
-	// 	let pageginationPageNumber = 1
-	// 	if (params.pageNumber) {
-	// 		pageginationPageNumber = params.pageNumber
-	// 	}
-  //
-	// 	let paginationFilter = ''
-  //
-	// 	const posts = await ghost.posts.browse({
-	// 		limit: postsPerPage,
-	// 		page: pageginationPageNumber,
-	// 		include: 'tags,authors',
-	// 		fields: postIndexFields,
-	// 		filter: 'featured: true'
-	// 	})
-  //
-	// 	return {
-	// 		indexPosts: posts,
-	// 		indexPagination: posts.meta.pagination
-	// 	}
-	// },
-	components: {
-		PostList
-	},
-	methods: {}
+
 }
 </script>
 

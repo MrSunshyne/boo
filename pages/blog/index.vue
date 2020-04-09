@@ -27,9 +27,6 @@ export default {
   computed: {
     ...mapGetters({ ghost: 'getGhost' })
   },
-  created() {
-    // this.fetchData()
-  },
   data() {
     return {
       indexPosts: [],
@@ -37,9 +34,9 @@ export default {
     }
   },
   async fetch() {
-    let pageginationPageNumber = 1
+    let paginationPageNumber = 1
     if (this.$route.params.pageNumber) {
-      pageginationPageNumber = this.$route.params.pageNumber
+      paginationPageNumber = this.$route.params.pageNumber
     }
 
     let paginationFilter = ''
@@ -47,7 +44,7 @@ export default {
     this.indexPosts = await this.ghost.posts
       .browse({
         limit: this.$store.state.ghostPostsPerPage,
-        page: pageginationPageNumber,
+        page: paginationPageNumber,
         include: 'tags,authors',
         fields: this.$store.state.ghostPostIndexFields
         // filter: 'featured: true'
@@ -85,8 +82,7 @@ export default {
   },
   watch: {
     ghost(n, o) {
-      // this.fetchData()
-      this.$fetch()
+      // this.$fetch()
     }
   }
 }

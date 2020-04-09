@@ -145,44 +145,44 @@ export const actions = {
 
     try {
       const settings = await ghost.settings.browse()
-      const tags = await ghost.tags.browse({ limit: 'all' })
-      const authors = await ghost.authors.browse({ limit: 'all' })
-      const posts = await ghost.posts.browse({
-        limit: 'all',
-        fields: 'slug,title'
-      })
-
-      // append next and previous slugs (for links in a post) to next and previous posts
-      const postsWithLinks = posts.map((post, index) => {
-        const prevSlug = posts[index - 1] ? posts[index - 1].slug : null
-        const nextSlug = posts[index + 1] ? posts[index + 1].slug : null
-
-        return {
-          ...post,
-          prevSlug,
-          nextSlug
-        }
-      })
+      // const tags = await ghost.tags.browse({ limit: 'all' })
+      // const authors = await ghost.authors.browse({ limit: 'all' })
+      // const posts = await ghost.posts.browse({
+      //   limit: 'all',
+      //   fields: 'slug,title'
+      // })
+      //
+      // // append next and previous slugs (for links in a post) to next and previous posts
+      // const postsWithLinks = posts.map((post, index) => {
+      //   const prevSlug = posts[index - 1] ? posts[index - 1].slug : null
+      //   const nextSlug = posts[index + 1] ? posts[index + 1].slug : null
+      //
+      //   return {
+      //     ...post,
+      //     prevSlug,
+      //     nextSlug
+      //   }
+      // })
 
       commit('setSiteSettings', settings)
-      commit('setSiteTags', tags)
-      commit('setSiteAuthors', authors)
-      commit('setPostNav', postsWithLinks)
+      // commit('setSiteTags', tags)
+      // commit('setSiteAuthors', authors)
+      // commit('setPostNav', postsWithLinks)
     } catch (e) {
       // since this is server init, the error would be a server error
       error({ statusCode: 500, message: e.message })
       throw e
     }
   },
-  async getIndexPosts({ commit }, pagination) {
-    // set desired fields for index lists (and tags/authors indices)
-    const posts = await ghost.posts.browse({
-      limit: postsPerPage,
-      page: pagination.pageNumber,
-      include: 'tags,authors',
-      fields: postIndexFields,
-      filter: pagination.filter
-    })
-    commit('setIndexPosts', posts)
-  }
+  // async getIndexPosts({ commit }, pagination) {
+  //   // set desired fields for index lists (and tags/authors indices)
+  //   const posts = await ghost.posts.browse({
+  //     limit: postsPerPage,
+  //     page: pagination.pageNumber,
+  //     include: 'tags,authors',
+  //     fields: postIndexFields,
+  //     filter: pagination.filter
+  //   })
+  //   commit('setIndexPosts', posts)
+  // }
 }

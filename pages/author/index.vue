@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      authors: null
+      authors: []
     }
   },
   async fetch() {

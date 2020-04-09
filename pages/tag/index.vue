@@ -6,7 +6,7 @@
 
     <div v-if="$fetchState.pending">Loading tags</div>
     <div class="tags-wrapper" v-else>
-      <nuxt-link :to="'/tag/' + tag.slug" class="tags" v-for="tag in tags">{{
+      <nuxt-link :to="'/tag/' + tag.slug" class="tags" v-for="tag in tags" :key="tag.name">{{
         tag.name
       }}</nuxt-link>
     </div>
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      tags: null
+      tags: []
     }
   },
   async fetch() {
