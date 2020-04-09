@@ -77,9 +77,6 @@ export default {
       return config
     }
   },
-  generate: {
-    dir: 'docs'
-  },
   router: {
     base: '/',
     extendRoutes(routes, resolve) {
