@@ -13,9 +13,6 @@
         <nuxt-link :to="{name: 'blog'}">Blog</nuxt-link>
       </li>
       <li>
-        <nuxt-link :to="{name: 'index'}">Pages</nuxt-link>
-      </li>
-      <li>
         <nuxt-link :to="{name: 'tag'}">Tags</nuxt-link>
       </li>
       <li>

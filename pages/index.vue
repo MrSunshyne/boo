@@ -22,27 +22,27 @@ import { ghost, postsPerPage, postIndexFields } from '../api/ghost'
 
 import PostList from '../components/PostList'
 export default {
-	async asyncData({ params, store, error, payload }) {
-		let pageginationPageNumber = 1
-		if (params.pageNumber) {
-			pageginationPageNumber = params.pageNumber
-		}
-
-		let paginationFilter = ''
-
-		const posts = await ghost.posts.browse({
-			limit: postsPerPage,
-			page: pageginationPageNumber,
-			include: 'tags,authors',
-			fields: postIndexFields,
-			filter: 'featured: true'
-		})
-
-		return {
-			indexPosts: posts,
-			indexPagination: posts.meta.pagination
-		}
-	},
+	// async asyncData({ params, store, error, payload }) {
+	// 	let pageginationPageNumber = 1
+	// 	if (params.pageNumber) {
+	// 		pageginationPageNumber = params.pageNumber
+	// 	}
+  //
+	// 	let paginationFilter = ''
+  //
+	// 	const posts = await ghost.posts.browse({
+	// 		limit: postsPerPage,
+	// 		page: pageginationPageNumber,
+	// 		include: 'tags,authors',
+	// 		fields: postIndexFields,
+	// 		filter: 'featured: true'
+	// 	})
+  //
+	// 	return {
+	// 		indexPosts: posts,
+	// 		indexPagination: posts.meta.pagination
+	// 	}
+	// },
 	components: {
 		PostList
 	},
@@ -56,6 +56,10 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+
+body {
+  overflow-y: scroll;
+}
 
 .title {
 	display: block;
