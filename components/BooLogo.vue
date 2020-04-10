@@ -25,7 +25,7 @@
               begin="0s"
               dur="2s"
               repeatCount="indefinite"
-              :to="to"
+              :values="`${from};${to};${from}`"
             />
           </path>
           <path
