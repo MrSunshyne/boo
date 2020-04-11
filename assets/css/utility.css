@@ -1,0 +1,26 @@
+.flow {
+  --flow-space: 1em;
+}
+
+.flow > * + * {
+  margin-top: 1em;
+  margin-top: var(--flow-space);
+}
+
+.content {
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  &>*:first-child {
+      color:red;
+     margin-top: 1em;
+   }
+}
+
