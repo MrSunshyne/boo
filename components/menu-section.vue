@@ -5,7 +5,7 @@
   >
     <nuxt-link class="text-center block md:text-left text-3xl" :to="{name: 'index'}">boo</nuxt-link>
 
-    <ul class="flex justify-center py-10 md:py-0 md:mr-3">
+    <ul class="flex justify-center py-5 md:py-0 md:mr-3">
       <li>
         <nuxt-link :to="{name: 'index'}">Home</nuxt-link>
       </li>

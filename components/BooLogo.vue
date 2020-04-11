@@ -27,7 +27,6 @@
               calcMode="spline"
               repeatCount="indefinite"
               :values="`${from};${to};${from}`"
-              keyTimes="0 ; 0.25 ; 0.5 ; 0.75 ; 1"
             />
           </path>
           <path

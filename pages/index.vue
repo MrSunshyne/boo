@@ -2,26 +2,26 @@
   <div class="container mx-auto items-center flex">
     <div class="md:flex">
       <div
-        class="flex flex-col justify-center sm:w-3/4 text-center md:text-right"
+        class="flex flex-col justify-center md:w-3/4 text-center md:text-right"
       >
         <!-- <h1 class="text-4xl">What's boo?</h1> -->
         <h2
-          class="tracking-tight font-serif text-gray-700 text-3xl md:text-5xl"
+          class="tracking-tight leading-tight font-serif text-gray-700 text-2xl md:text-5xl"
         >
           A free and open source theme for headless Ghost CMS
         </h2>
-        <p class="text-xl md:text-2xl text-gray-500 mt-5">
+        <p class="text-sm md:text-2xl text-gray-600 mt-5">
           Built with NuxtJS & TailwindCSS
         </p>
-        <div class="mt-5">
+        <div class="mt-5 mb-5 md:mb-0">
           <nuxt-link :to="{ path: '/blog' }" class="button"
             >View posts</nuxt-link
           >
         </div>
       </div>
       <div class="md:w-1/2">
-<!--        <img  src="/boo.svg" alt />-->
-        <BooLogo class="w-48 md:w-64 mx-auto" />
+        <!--        <img  src="/boo.svg" alt />-->
+        <BooLogo class="w-32 sm:w-48 lg:w-64 mx-auto" />
       </div>
     </div>
   </div>

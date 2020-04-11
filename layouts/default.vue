@@ -1,7 +1,7 @@
 <template>
-  <div class="flex min-h-screen flex-col">
+  <div class="flex md:min-h-screen flex-col">
     <menu-section></menu-section>
-    <nuxt class="flex-grow" />
+    <nuxt class="md:flex-grow" />
     <footer-section />
   </div>
 </template>
@@ -32,6 +32,12 @@ export default {
 }
 
 @screen sm {
+  .container {
+    @apply px-6;
+  }
+}
+
+@screen lg {
 	.container {
 		@apply px-0;
 	}

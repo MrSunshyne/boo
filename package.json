@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt --port 6001",
+    "localdev": "NUXT_HOST=192.168.100.156 nuxt --port 6002",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
