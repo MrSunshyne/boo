@@ -1,7 +1,7 @@
 <template>
   <div class="container flex justify-between mx-auto text-sm py-5 tracking-wide">
     <nuxt-link :to="{name: 'settings'}" class="md:text-right text-xs tracking-widest">
-      <div class="text-gray-600">source: {{ url }}</div>
+      <div class="text-gray-600">content source: {{ url }}</div>
     </nuxt-link>
 
     <ul class="menu flex justify-end">
