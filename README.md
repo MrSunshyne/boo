@@ -4,14 +4,18 @@
 
 **[View live demo](https://boo.ramgolam.com/)**
 
+## Screenshot
+
+![Screenshot of Boo](https://github.com/MrSunshyne/boo/raw/master/static/screenshot.png)
+
 The demo currently uses data from demo.ghost.org (Thanks for making this available team Ghost ♥️)
 
 ## Getting Started
 
-1. Setup ghost
-2. Generate an access token
-3. Edit `api/ghost.js` and change line 5 & 6 to match your ghost server
-4. You're good to go !
+1. Setup ghost. [See how](https://ghost.org/docs/install/local/)
+2. Generate an access token. [See how](https://ghost.org/docs/api/v3/admin/#token-authentication)
+3. Edit `api/ghost.js` in boo and change line 5 & 6 to match your ghost server configurations
+4. You're good to go. Run `npm run dev` and navigate to `http://localhost:6001` to see your site!
 
 ## Work in progress
 
