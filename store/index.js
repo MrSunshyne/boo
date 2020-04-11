@@ -28,7 +28,13 @@ export const state = () => ({
     'custom_excerpt',
     'excerpt' // excerpt doesn't seem to work in field definition (bug?)
   ],
-  ghostPostsPerPage: 7
+  ghostPostsPerPage: 7,
+  testParams: {
+    tags: 0,
+    posts: 0,
+    authors:0,
+    pages: 0
+  }
 })
 
 export const mutations = {
@@ -63,6 +69,9 @@ export const mutations = {
   },
   setGhostKey(state, value) {
     state.ghostKey = value
+  },
+  setTestParams(state, value) {
+    state.testParams = value
   }
 }
 
@@ -79,6 +88,9 @@ export const getters = {
       key: state.ghostKey,
       version: state.ghostVersion
     }
+  },
+  getTestParams(state) {
+    return state.testParams;
   }
 }
 
@@ -99,6 +111,30 @@ export const actions = {
       version: 'v3'
     })
     commit('setGhost', instance)
+  },
+  async testParams({state, commit}) {
+    let posts = await state.ghost.posts
+      .browse({
+        include: 'tags,authors',
+        fields: state.ghostPostIndexFields
+      })
+
+    let tags = await state.ghost.tags
+      .browse()
+
+    let authors = await state.ghost.authors
+      .browse()
+
+
+    let pages = await state.ghost.pages
+      .browse()
+
+    commit('setTestParams', {
+      tags: tags.length,
+      posts: posts.length,
+      authors: authors.length,
+      pages: pages.length
+    })
   },
   setDarkMode({ commit }, payload) {
     const darkModeClass = 'mode-dark'

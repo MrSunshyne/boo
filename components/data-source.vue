@@ -11,37 +11,35 @@
           </p>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-          <form action="#" method="POST">
-            <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-6 sm:col-span-3">
-                <label
-                  for="url"
-                  class="block text-sm font-medium leading-5 text-gray-700"
-                  >URL</label
-                >
-                <input
-                  id="url"
-                  class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                  v-model="url"
-                />
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label
-                  for="key"
-                  class="block text-sm font-medium leading-5 text-gray-700"
-                  >API Key</label
-                >
-                <input
-                  id="key"
-                  class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                  v-model="key"
-                />
-              </div>
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6 sm:col-span-3">
+              <label
+                for="url"
+                class="block text-sm font-medium leading-5 text-gray-700"
+                >URL</label
+              >
+              <input
+                id="url"
+                class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                v-model="url"
+              />
             </div>
-          </form>
 
-          <div class="mt-8 border-t border-gray-200 pt-5">
+            <div class="col-span-6 sm:col-span-3">
+              <label
+                for="key"
+                class="block text-sm font-medium leading-5 text-gray-700"
+                >API Key</label
+              >
+              <input
+                id="key"
+                class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                v-model="key"
+              />
+            </div>
+          </div>
+
+          <div class="mt-8 mb-8 border-b border-gray-200 pb-5">
             <div class="flex justify-end">
               <span class="inline-flex rounded-md shadow-sm">
                 <button
@@ -50,6 +48,15 @@
                   @click="resetGhost"
                 >
                   Reset
+                </button>
+              </span>
+              <span class="ml-3 inline-flex rounded-md shadow-sm">
+                <button
+                  type="button"
+                  class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                  @click="testParams"
+                >
+                  Test
                 </button>
               </span>
               <span class="ml-3 inline-flex rounded-md shadow-sm">
@@ -65,13 +72,49 @@
           </div>
         </div>
       </div>
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">
+            Source Health
+          </h3>
+          <p class="mt-1 text-sm leading-5 text-gray-500">
+            Quick glace if the above setting is working and what it contains
+          </p>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6 sm:col-span-3 flex items-center" v-if="getTestParams">
+              <StatusIndicator :color="getTestParams.posts > 0 ? 'green' : 'red'" />
+              <div class="mr-2" v-if="getTestParams.posts > 0">{{ getTestParams.posts }} Posts found</div>
+              <div class="mr-2" v-else>No posts found</div>
+
+            </div>
+            <div class="col-span-6 sm:col-span-3 flex items-center">
+              <StatusIndicator :color="getTestParams.pages > 0 ? 'green' : 'red'" />
+              <div class="mr-2" v-if="getTestParams.pages > 0">{{ getTestParams.pages }} Pages</div>
+              <div class="mr-2" v-else>No pages found</div>
+
+            </div>
+            <div class="col-span-6 sm:col-span-3 flex items-center">
+              <StatusIndicator :color="getTestParams.tags > 0 ? 'green' : 'red'" />
+              <div class="mr-2" v-if="getTestParams.tags > 0">{{ getTestParams.tags }} Tags</div>
+              <div class="mr-2" v-else>No tags found</div>
+            </div>
+            <div class="col-span-6 sm:col-span-3 flex  items-center">
+              <StatusIndicator :color="getTestParams.authors > 0 ? 'green' : 'red'" />
+              <div class="mr-2" v-if="getTestParams.authors > 0">{{ getTestParams.authors }} Authors</div>
+              <div class="mr-2" v-else>No authors found</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
+import { mapGetters, mapActions } from 'vuex';
+import StatusIndicator from "./status-indicator";
 export default {
   data() {
     return {
@@ -95,10 +138,13 @@ export default {
         this.$store.commit('setGhostKey', value)
       }
     },
-    ...mapGetters({ ghost: 'getGhost', ghostOptions: 'getGhostOptions' })
+    ...mapGetters({ ghost: 'getGhost', ghostOptions: 'getGhostOptions', getTestParams: 'getTestParams' })
   },
   methods: {
-    ...mapActions(['initGhost', 'resetGhost'])
+    ...mapActions(['initGhost', 'resetGhost', 'testParams'])
+  },
+  components : {
+    StatusIndicator
   }
 }
 </script>
