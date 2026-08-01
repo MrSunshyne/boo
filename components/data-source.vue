@@ -20,7 +20,7 @@
               >
               <input
                 id="url"
-                class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                 v-model="url"
               />
             </div>
@@ -33,7 +33,7 @@
               >
               <input
                 id="key"
-                class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                 v-model="key"
               />
             </div>
@@ -44,7 +44,7 @@
               <span class="inline-flex rounded-md shadow-sm">
                 <button
                   type="button"
-                  class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                  class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-300 active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
                   @click="resetGhost"
                 >
                   Reset
@@ -53,7 +53,7 @@
               <span class="ml-3 inline-flex rounded-md shadow-sm">
                 <button
                   type="button"
-                  class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                  class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-300 active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
                   @click="testParams"
                 >
                   Test
@@ -62,7 +62,7 @@
               <span class="ml-3 inline-flex rounded-md shadow-sm">
                 <button
                   type="submit"
-                  class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+                  class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-500 active:bg-indigo-700 transition duration-150 ease-in-out"
                   @click="initGhost"
                 >
                   Save

@@ -51,13 +51,9 @@ export default {
      */
 
     postcss: {
+      // tailwindcss + autoprefixer are injected by @nuxtjs/tailwindcss
       plugins: {
-        // Disable a plugin by passing false as value
-        'postcss-color-function': {},
-        'postcss-url': false,
-        tailwindcss: 'tailwind.config.js',
-        'postcss-nested': {},
-        'postcss-hexrgba': {}
+        'postcss-nested': {}
       },
       preset: {
         // Change the postcss-preset-env settings
